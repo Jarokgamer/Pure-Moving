@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Following Up – Samuel #311847 – Pure Moving & Storage</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: #F0F2F5;
+      font-family: 'Inter', Arial, sans-serif;
+      color: #1C2B3A;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .email-wrapper {
+      max-width: 620px;
+      margin: 30px auto;
+      background: #ffffff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.10);
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: linear-gradient(135deg, #0B2545 0%, #1B4F8A 100%);
+      padding: 28px 40px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo-area {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-icon {
+      width: 40px; height: 40px;
+      background: #FFA500;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .logo-text .brand {
+      font-size: 18px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.1;
+    }
+    .logo-text .sub {
+      font-size: 9px;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .header-ref {
+      text-align: right;
+    }
+    .header-ref .ref-label {
+      font-size: 10px;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+    .header-ref .ref-num {
+      font-size: 16px;
+      font-weight: 700;
+      color: #FFA500;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #0B2545 0%, #1B4F8A 100%);
+      padding: 8px 40px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 200px; height: 200px;
+      background: rgba(255,165,0,0.07);
+      border-radius: 50%;
+    }
+    .hero-emoji {
+      font-size: 52px;
+      display: block;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero h1 {
+      font-size: 26px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.25;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero h1 span { color: #FFA500; }
+    .hero p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.7);
+      max-width: 380px;
+      margin: 0 auto;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── URGENCY BAR ── */
+    .urgency-bar {
+      background: linear-gradient(135deg, #FF8C00, #FFA500);
+      padding: 14px 40px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .urgency-bar .ub-icon { font-size: 20px; flex-shrink: 0; }
+    .urgency-bar p {
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;
+    }
+    .urgency-bar p span { font-weight: 400; opacity: 0.85; }
+
+    /* ── QUOTE RECAP ── */
+    .section { padding: 28px 40px 0; }
+    .section-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: #7A8FA6;
+      font-weight: 700;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #E8EDF2;
+    }
+
+    .quote-recap-card {
+      border: 1.5px solid #E8EDF2;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .qrc-header {
+      background: #F7F9FC;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1.5px solid #E8EDF2;
+    }
+    .qrc-header .qrc-icon { font-size: 18px; }
+    .qrc-header .qrc-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0B2545;
+    }
+    .qrc-header .qrc-date {
+      margin-left: auto;
+      font-size: 12px;
+      font-weight: 600;
+      color: #1B4F8A;
+      background: #EBF4FF;
+      border-radius: 20px;
+      padding: 4px 12px;
+    }
+
+    .qrc-body {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .qrc-stat {
+      flex: 1;
+      min-width: 120px;
+      padding: 16px 20px;
+      border-right: 1px solid #E8EDF2;
+      text-align: center;
+    }
+    .qrc-stat:last-child { border-right: none; }
+    .qrc-stat .qs-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #7A8FA6;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .qrc-stat .qs-value {
+      font-size: 20px;
+      font-weight: 800;
+      color: #0B2545;
+    }
+    .qrc-stat .qs-unit {
+      font-size: 11px;
+      color: #7A8FA6;
+      margin-top: 2px;
+    }
+    .qrc-stat .qs-value.orange { color: #FFA500; }
+
+    /* ── PERSONAL MESSAGE ── */
+    .message-card {
+      background: #F7F9FC;
+      border: 1.5px solid #E8EDF2;
+      border-radius: 14px;
+      padding: 22px 24px;
+      margin-top: 14px;
+      position: relative;
+    }
+    .message-card::before {
+      content: '"';
+      position: absolute;
+      top: 10px; left: 18px;
+      font-size: 60px;
+      color: #E8EDF2;
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+    .message-card p {
+      font-size: 14px;
+      color: #1C2B3A;
+      line-height: 1.75;
+      position: relative;
+      z-index: 1;
+      padding-top: 10px;
+    }
+    .message-card p strong { color: #0B2545; }
+    .message-signature {
+      margin-top: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .message-signature .ms-avatar {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, #0B2545, #1B4F8A);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+      font-weight: 800;
+      color: #FFA500;
+      flex-shrink: 0;
+    }
+    .message-signature .ms-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0B2545;
+    }
+    .message-signature .ms-role {
+      font-size: 11px;
+      color: #7A8FA6;
+    }
+
+    /* ── OFFER HIGHLIGHT ── */
+    .offer-card {
+      border-radius: 14px;
+      background: linear-gradient(135deg, #0B2545, #1B4F8A);
+      padding: 22px 24px;
+      margin-top: 14px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .offer-card .oc-icon {
+      font-size: 36px; flex-shrink: 0;
+    }
+    .offer-card .oc-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .offer-card .oc-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.5;
+    }
+    .offer-card .oc-pill {
+      margin-left: auto;
+      background: #FFA500;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 20px;
+      padding: 8px 16px;
+      text-align: center;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    /* ── WHY US PILLARS ── */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .pillar {
+      background: #F7F9FC;
+      border: 1.5px solid #E8EDF2;
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .pillar .p-icon {
+      font-size: 22px; flex-shrink: 0; margin-top: 1px;
+    }
+    .pillar .p-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0B2545;
+      margin-bottom: 3px;
+    }
+    .pillar .p-desc {
+      font-size: 12px;
+      color: #7A8FA6;
+      line-height: 1.4;
+    }
+
+    /* ── SPECIAL OFFER ── */
+    .special-offer {
+      margin: 22px 40px 0;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #FF8C00, #FF6B00);
+      padding: 24px 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .special-offer::after {
+      content: '%';
+      position: absolute;
+      right: -10px; top: -20px;
+      font-size: 120px;
+      font-weight: 900;
+      color: rgba(255,255,255,0.08);
+      line-height: 1;
+    }
+    .special-offer .so-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: rgba(255,255,255,0.75);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .special-offer h3 {
+      font-size: 20px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .special-offer p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 0;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      margin: 22px 40px 0;
+      text-align: center;
+    }
+    .cta-button-primary {
+      display: block;
+      background: linear-gradient(135deg, #0B2545, #1B4F8A);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 17px 36px;
+      border-radius: 50px;
+      text-decoration: none;
+      letter-spacing: 0.2px;
+      box-shadow: 0 6px 20px rgba(11,37,69,0.30);
+    }
+    .cta-or {
+      font-size: 12px;
+      color: #AAB4C0;
+      margin: 12px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .cta-or::before, .cta-or::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #E8EDF2;
+    }
+    .cta-button-secondary {
+      display: block;
+      background: #fff;
+      border: 2px solid #E8EDF2;
+      color: #0B2545;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 14px 36px;
+      border-radius: 50px;
+      text-decoration: none;
+    }
+
+    /* ── QUICK CONTACT ── */
+    .quick-contact {
+      margin: 22px 40px 0;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .qc-chip {
+      flex: 1;
+      min-width: 150px;
+      background: #F7F9FC;
+      border: 1.5px solid #E8EDF2;
+      border-radius: 12px;
+      padding: 14px 16px;
+      text-align: center;
+      text-decoration: none;
+    }
+    .qc-chip .qcc-icon { font-size: 22px; margin-bottom: 6px; display: block; }
+    .qc-chip .qcc-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #7A8FA6;
+      font-weight: 600;
+    }
+    .qc-chip .qcc-value {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0B2545;
+      margin-top: 2px;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      margin: 24px 40px 0;
+      padding: 20px 0 30px;
+      border-top: 1.5px solid #E8EDF2;
+      text-align: center;
+    }
+    .footer-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .footer-logo .fl-icon {
+      width: 28px; height: 28px;
+      background: #0B2545;
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .footer-logo .fl-name {
+      font-size: 14px;
+      font-weight: 800;
+      color: #0B2545;
+    }
+    .footer p {
+      font-size: 12px;
+      color: #7A8FA6;
+      line-height: 1.7;
+    }
+    .footer a { color: #1B4F8A; text-decoration: none; font-weight: 500; }
+    .legal-footer {
+      padding: 12px 40px 28px;
+      text-align: center;
+      font-size: 11px;
+      color: #C8D0DA;
+      line-height: 1.6;
+    }
+
+    /* ── SECTION DIVIDER ── */
+    .section-divider {
+      height: 1px;
+      background: #E8EDF2;
+      margin: 24px 40px 0;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 480px) {
+      .email-wrapper { margin: 0; border-radius: 0; }
+      .header, .hero, .urgency-bar, .section,
+      .special-offer, .cta-section, .footer,
+      .quick-contact, .legal-footer {
+        padding-left: 20px; padding-right: 20px;
+      }
+      .special-offer, .cta-section, .quick-contact { margin-left: 20px; margin-right: 20px; }
+      .section-divider { margin-left: 20px; margin-right: 20px; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .qrc-body { flex-direction: column; }
+      .qrc-stat { border-right: none; border-bottom: 1px solid #E8EDF2; }
+      .qrc-stat:last-child { border-bottom: none; }
+      .offer-card { flex-direction: column; text-align: center; }
+      .offer-card .oc-pill { margin-left: 0; }
+      .header { flex-direction: column; gap: 10px; text-align: center; }
+      .header-ref { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="email-wrapper">
+
+  <!-- ══ HEADER ══ -->
+  <div class="header">
+    <div class="logo-area">
+      <div class="logo-icon">
+        <svg width="24" height="18" viewBox="0 0 28 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="5" width="18" height="12" rx="2" fill="white"/>
+          <path d="M18 8h5l3 4v4h-8V8z" fill="white"/>
+          <circle cx="5" cy="19" r="2.5" fill="#0B2545" stroke="white" stroke-width="1"/>
+          <circle cx="22" cy="19" r="2.5" fill="#0B2545" stroke="white" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <div class="brand">Pure Moving</div>
+        <div class="sub">&amp; Storage Inc.</div>
+      </div>
+    </div>
+    <div class="header-ref">
+      <div class="ref-label">Reference</div>
+      <div class="ref-num">#311847</div>
+    </div>
+  </div>
+
+  <!-- ══ HERO ══ -->
+  <div class="hero">
+    <span class="hero-emoji">👋</span>
+    <h1>Hey <span>Samuel</span>, still thinking it over?</h1>
+    <p>We wanted to follow up on your moving quote — we'd love to help make your move as smooth as possible!</p>
+  </div>
+
+  <!-- ══ URGENCY BAR ══ -->
+  <div class="urgency-bar">
+    <div class="ub-icon">📅</div>
+    <p><strong>Your move date (Saturday, April 12, 2025) is coming up.</strong> <span>Spots are limited — lock yours in today!</span></p>
+  </div>
+
+  <!-- ══ QUOTE RECAP ══ -->
+  <div class="section">
+    <div class="section-title">Your Quote at a Glance</div>
+    <div class="quote-recap-card">
+      <div class="qrc-header">
+        <span class="qrc-icon">📋</span>
+        <span class="qrc-title">Ref #311847 · Moving Quote</span>
+        <span class="qrc-date">📅 Saturday, April 12, 2025</span>
+      </div>
+      <div class="qrc-body">
+        <div class="qrc-stat">
+          <div class="qs-label">Movers</div>
+          <div class="qs-value">3</div>
+          <div class="qs-unit">professionals</div>
+        </div>
+        <div class="qrc-stat">
+          <div class="qs-label">Hourly Rate</div>
+          <div class="qs-value orange">$189</div>
+          <div class="qs-unit">tax included</div>
+        </div>
+        <div class="qrc-stat">
+          <div class="qs-label">Truck Fee</div>
+          <div class="qs-value">$39</div>
+          <div class="qs-unit">one-time only</div>
+        </div>
+        <div class="qrc-stat">
+          <div class="qs-label">Cash Discount</div>
+          <div class="qs-value orange">7%</div>
+          <div class="qs-unit">optional</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Personal message -->
+    <div class="message-card">
+      <p>
+        Hi <strong>Samuel</strong>, I just wanted to personally reach out and see if you had any questions about your quote.
+        Moving can feel overwhelming — but that's exactly what we're here for.
+        We've helped thousands of families across California move stress-free,
+        and we'd love to do the same for you. <strong>Don't hesitate to call or text me directly!</strong>
+      </p>
+      <div class="message-signature">
+        <div class="ms-avatar">M</div>
+        <div>
+          <div class="ms-name">Matthew</div>
+          <div class="ms-role">Customer Care · Pure Moving &amp; Storage Inc.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ══ MON-THU OFFER ══ -->
+  <div class="section">
+    <div class="section-title">Special Reminder</div>
+    <div class="offer-card">
+      <div class="oc-icon">💡</div>
+      <div>
+        <div class="oc-title">Better rates on Mon–Thu!</div>
+        <div class="oc-desc">If your schedule is flexible, booking mid-week (not end/start of month) usually means a better rate for you.</div>
+      </div>
+      <div class="oc-pill">Save More</div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ══ WHY PURE MOVING ══ -->
+  <div class="section">
+    <div class="section-title">Why Pure Moving?</div>
+    <div class="pillars-grid">
+      <div class="pillar">
+        <div class="p-icon">🏆</div>
+        <div>
+          <div class="p-title">No Hidden Fees</div>
+          <div class="p-desc">Tax included in hourly rate. What you see is what you pay.</div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="p-icon">🛡️</div>
+        <div>
+          <div class="p-title">Fully Protected</div>
+          <div class="p-desc">Blankets, shrink wrap &amp; optional TV insurance up to $2,000.</div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="p-icon">⚡</div>
+        <div>
+          <div class="p-title">Professional Team</div>
+          <div class="p-desc">Experienced movers who handle your belongings with care.</div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="p-icon">✅</div>
+        <div>
+          <div class="p-title">All-Inclusive</div>
+          <div class="p-desc">No charge for gas, stairs, disassembly, or processing fees.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SPECIAL OFFER BANNER ══ -->
+  <div class="special-offer">
+    <div class="so-label">Don't forget</div>
+    <h3>Pay with cash &amp; save 7% 💸</h3>
+    <p>Ask us about the cash discount when you book — easy savings, no strings attached.</p>
+  </div>
+
+  <!-- ══ CTA ══ -->
+  <div class="cta-section" style="padding-top: 22px;">
+    <a href="https://www.puremovers.com/reservation" class="cta-button-primary">
+      🚚 &nbsp; Book My Move Now
+    </a>
+    <div class="cta-or">or reach us directly</div>
+    <a href="tel:3234711607" class="cta-button-secondary">
+      📞 &nbsp; Call / Text (323) 471-1607
+    </a>
+  </div>
+
+  <!-- ══ QUICK CONTACT ══ -->
+  <div class="quick-contact">
+    <a href="tel:3234711607" class="qc-chip">
+      <span class="qcc-icon">📞</span>
+      <div class="qcc-label">Call or Text</div>
+      <div class="qcc-value">(323) 471-1607</div>
+    </a>
+    <a href="https://www.puremovers.com/reservation" class="qc-chip">
+      <span class="qcc-icon">🌐</span>
+      <div class="qcc-label">Book Online</div>
+      <div class="qcc-value">puremovers.com</div>
+    </a>
+    <a href="mailto:info@puremovers.com" class="qc-chip">
+      <span class="qcc-icon">✉️</span>
+      <div class="qcc-label">Email Us</div>
+      <div class="qcc-value">info@puremovers.com</div>
+    </a>
+  </div>
+
+  <!-- ══ FOOTER ══ -->
+  <div class="footer">
+    <div class="footer-logo">
+      <div class="fl-icon">
+        <svg width="16" height="13" viewBox="0 0 28 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="5" width="18" height="12" rx="2" fill="#FFA500"/>
+          <path d="M18 8h5l3 4v4h-8V8z" fill="#FFA500"/>
+          <circle cx="5" cy="19" r="2.5" fill="white" stroke="#FFA500" stroke-width="1"/>
+          <circle cx="22" cy="19" r="2.5" fill="white" stroke="#FFA500" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="fl-name">Pure Moving &amp; Storage Inc.</div>
+    </div>
+    <p>
+      Warm regards, <strong>Matthew</strong> &amp; the Pure Moving Team<br>
+      <a href="tel:3234711607">(323) 471-1607</a> &nbsp;·&nbsp;
+      <a href="https://www.puremovers.com">www.puremovers.com</a>
+    </p>
+  </div>
+
+  <!-- ══ LEGAL ══ -->
+  <div class="legal-footer">
+    Pure Moving &amp; Storage Inc. · Los Angeles, CA<br>
+    You're receiving this because you requested a moving quote from us.<br>
+    <span>© 2025 Pure Moving &amp; Storage Inc. All rights reserved.</span>
+  </div>
+
+</div>
+
+</body>
+</html>
